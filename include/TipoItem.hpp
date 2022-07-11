@@ -7,13 +7,12 @@ class TipoItem
 {
 public:
  TipoItem();
- TipoItem(int _id_email, int _id_usuario, std::string *_texto);
+ TipoItem(int _id_email, int _id_usuario, std::string *_texto, int tamanho);
  int GetIdEmail();
  int GetUserId();
- std::string GetTexto();
+ std::string GetTexto(int tamanho);
  void SetIdEmail(int _id_email);
  void SetIdUsuario(int _id_usuario);
- void SetTexto(std::string _texto);
  void Imprime();
  bool Vazio();
 

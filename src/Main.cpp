@@ -68,7 +68,7 @@ int main(int argc, char **argv)
                 input >> texto_aux;
                 texto[i] = texto_aux;
             }
-            TipoItem *email = new TipoItem(email_id, usuario_id, texto);
+            TipoItem *email = new TipoItem(email_id, usuario_id, texto, n_palavras);
             aux_pos = ht.Insere(email, usuario_id);
             output << "OK: MENSAGEM " << email_id << " PARA " << usuario_id << " ARMAZENADA EM " << aux_pos << endl;
         }
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
             {
                 output << comando << " " << usuario_id << " " << email_id << ": ";
 
-                output << no_aux->GetTexto() << endl;
+                output << no_aux->GetTexto(n_palavras) << endl;
             }
             else
                 output << comando << " " << usuario_id << " " << email_id << ": MENSAGEM INEXISTENTE" << endl;
