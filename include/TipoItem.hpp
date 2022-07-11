@@ -7,7 +7,7 @@ class TipoItem
 {
 public:
  TipoItem();
- TipoItem(int _id_email, int _id_usuario, std::string _texto);
+ TipoItem(int _id_email, int _id_usuario, std::string *_texto);
  int GetIdEmail();
  int GetUserId();
  std::string GetTexto();
@@ -19,7 +19,7 @@ public:
 
 private:
  int id_email, id_usuario;
- std::string texto;
+ std::string texto[200];
 };
 
 #endif

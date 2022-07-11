@@ -7,7 +7,7 @@ TipoItem::TipoItem()
  id_email = -1;
 }
 
-TipoItem::TipoItem(int _id_email, int _id_usuario, string _texto)
+TipoItem::TipoItem(int _id_email, int _id_usuario, string *_texto)
 {
  id_email = _id_email;
  id_usuario = _id_usuario;
