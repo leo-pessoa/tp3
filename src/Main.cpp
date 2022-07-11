@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
     int usuario_id, email_id, n_palavras, aux_pos, aux_delete = 0;
     int tam_servidor;
-    string comando, texto;
+    string comando, texto_aux, texto[200];
     TipoItem *no_aux = new TipoItem();
 
     ifstream input;
@@ -58,8 +58,6 @@ int main(int argc, char **argv)
     input >> tam_servidor;
     HashTable ht(tam_servidor);
 
-    string texto_aux;
-
     while (input >> comando >> usuario_id >> email_id)
     {
         if (comando == "ENTREGA")
@@ -68,7 +66,7 @@ int main(int argc, char **argv)
             for (int i = 0; i < n_palavras; i++)
             {
                 input >> texto_aux;
-                texto += texto_aux;
+                texto[i] = texto_aux;
             }
             TipoItem *email = new TipoItem(email_id, usuario_id, texto);
             aux_pos = ht.Insere(email, usuario_id);
@@ -76,7 +74,7 @@ int main(int argc, char **argv)
         }
         else if (comando == "CONSULTA")
         {
-            no_aux = ht.Pesquisa(usuario_id, email_id);
+            no_aux = ht.Pesquisa(email_id, usuario_id);
             std::cout << "OK: MENSAGEM " << email_id << " PARA " << usuario_id << " ENCONTRADA EM " << no_aux->GetIdEmail() << endl;
             if (no_aux->GetIdEmail() == email_id)
             {
@@ -89,7 +87,7 @@ int main(int argc, char **argv)
         }
         else if (comando == "APAGA")
         {
-            aux_delete = ht.Remove(email_id, usuario_id);
+            aux_delete = ht.Remove(usuario_id, email_id);
             if (aux_delete)
                 output << "OK: MENSAGEM APAGADA" << endl;
             else
