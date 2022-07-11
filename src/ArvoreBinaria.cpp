@@ -2,13 +2,6 @@
 #include <string>
 #include "ArvoreBinaria.hpp"
 
-TipoNo::TipoNo()
-{
-  item.SetIdEmail(-1);
-  esq = NULL;
-  dir = NULL;
-}
-
 ArvoreBinaria::ArvoreBinaria()
 {
   raiz = NULL;
@@ -24,44 +17,49 @@ void ArvoreBinaria::Insere(TipoItem *item)
   InsereRecursivo(raiz, item);
 };
 
-void ArvoreBinaria::InsereRecursivo(TipoNo *&p, TipoItem *item)
+void ArvoreBinaria::InsereRecursivo(TipoItem *&p, TipoItem *item)
 {
   if (p == NULL)
   {
-    p = new TipoNo();
-    p->item = *item;
+    p = item;
   }
   else
   {
-    if (p->item.GetIdEmail() < p->item.GetIdEmail())
+    if (item->id_mail < p->id_mail)
+    {
+
       InsereRecursivo(p->esq, item);
+    }
     else
+    {
       InsereRecursivo(p->dir, item);
+    }
   }
 };
 
 TipoItem *ArvoreBinaria::Pesquisa(int chave, int id_user)
 {
   return PesquisaRecursivo(raiz, chave, id_user);
-}
+};
 
-TipoNo *ArvoreBinaria::PesquisaRecursivo(TipoNo *p, int chave, int id_user)
+TipoItem *ArvoreBinaria::PesquisaRecursivo(TipoItem *p, int chave, int id_user)
 {
 
-  TipoNo *aux = new TipoNo();
-
+  TipoItem *aux = new TipoItem();
   if (p == NULL)
   {
-    aux->SetIdEmail(-1);
+    aux->id_mail = -1;
     return aux;
   }
-  if (chave < p->item.GetIdEmail())
+  else if (chave < p->id_mail)
+  {
     return PesquisaRecursivo(p->esq, chave, id_user);
-  else if (chave > p->item.GetIdEmail())
+  }
+  else if (chave > p->id_mail)
     return PesquisaRecursivo(p->dir, chave, id_user);
   else
   {
-    if (id_user == p->item.GetUserId())
+    if (id_user == p->id_usuario)
       return p;
     else
       return aux;
@@ -74,55 +72,7 @@ void ArvoreBinaria::Limpa()
   raiz = NULL;
 }
 
-int ArvoreBinaria::Remove(int chave)
-{
-  return RemoveRecursivo(raiz, chave);
-}
-
-int ArvoreBinaria::RemoveRecursivo(TipoNo *&p, int chave)
-{
-  if (p == NULL)
-    return 0;
-  if (chave < p->item.GetIdEmail())
-    return RemoveRecursivo(p->esq, chave);
-  else if (chave > p->item.GetIdEmail())
-    return RemoveRecursivo(p->dir, chave);
-  else
-  {
-    if (p->esq == NULL && p->dir == NULL)
-    {
-      delete p;
-      p = NULL;
-      return 0;
-    }
-    else if (p->esq == NULL)
-    {
-      TipoNo *aux = p;
-      p = p->dir;
-      delete aux;
-      return 1;
-    }
-    else if (p->dir == NULL)
-    {
-      TipoNo *aux = p;
-      p = p->esq;
-      delete aux;
-      return 1;
-    }
-    else
-    {
-      TipoNo *aux = p->dir;
-      while (aux->esq != NULL)
-        aux = aux->esq;
-      p->item = aux->item;
-      return RemoveRecursivo(p->dir, aux->item.GetIdEmail());
-    }
-  }
-
-  return 0;
-}
-
-void ArvoreBinaria::ApagaRecursivo(TipoNo *p)
+void ArvoreBinaria::ApagaRecursivo(TipoItem *p)
 {
   if (p != NULL)
   {
@@ -130,4 +80,63 @@ void ArvoreBinaria::ApagaRecursivo(TipoNo *p)
     ApagaRecursivo(p->dir);
     delete p;
   }
+};
+
+int ArvoreBinaria::Remove(int chave)
+{
+  return RemoveRecursivo(raiz, chave);
+};
+
+int ArvoreBinaria::RemoveRecursivo(TipoItem *&p, int chave)
+{
+  TipoItem *aux;
+  if (p == NULL)
+  {
+    return 0;
+  }
+  if (chave < p->id_mail)
+  {
+    return RemoveRecursivo(p->esq, chave);
+  }
+  else if (chave > p->id_mail)
+  {
+    return RemoveRecursivo(p->dir, chave);
+  }
+  else
+  {
+    if (p->dir == NULL)
+    {
+      aux = p;
+      p = p->esq;
+      delete aux;
+      return 1;
+    }
+    else if (p->esq == NULL)
+    {
+      aux = p;
+      p = p->dir;
+      delete aux;
+      return 1;
+    }
+    else
+    {
+      Antecessor(p, p->esq);
+      return 1;
+    }
+  }
+
+  return 0;
+};
+
+void ArvoreBinaria::Antecessor(TipoItem *q, TipoItem *&r)
+{
+  if (r->dir != NULL)
+  {
+    Antecessor(q, r->dir);
+    return;
+  }
+  q->chave = r->chave;
+  q = r;
+  r = r->esq;
+  free(q);
 }

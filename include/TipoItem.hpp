@@ -7,19 +7,18 @@ class TipoItem
 {
 public:
  TipoItem();
- TipoItem(int _id_email, int _id_usuario, std::string _texto);
- int GetIdEmail();
- int GetUserId();
- std::string GetTexto();
- void SetIdEmail(int _id_email);
- void SetIdUsuario(int _id_usuario);
- void SetTexto(std::string _texto);
- void Imprime();
- bool Vazio();
+ TipoItem(std::string _texto[200], int _id_mail, int tamanho, int _id_usuario);
+ int tam_texto;
+ int id_mail;
+ int id_usuario;
+ std::string texto[200];
 
 private:
- int id_email, id_usuario;
- std::string texto;
+ int chave;
+ TipoItem *esq;
+ TipoItem *dir;
+ friend class ArvoreBinaria;
+ friend class HashTable;
 };
 
 #endif

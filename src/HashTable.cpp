@@ -29,8 +29,7 @@ int HashTable::Insere(TipoItem *_email, int _id_usuario)
 
 int HashTable::Remove(int id_usuario, int id_email)
 {
-  int pos;
-  pos = Hash(id_usuario);
+  int pos = Hash(id_usuario);
   return Tabela[pos].Remove(id_email);
 }
 

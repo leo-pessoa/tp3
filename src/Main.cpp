@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
     int usuario_id, email_id, n_palavras, aux_pos, aux_delete = 0;
     int tam_servidor;
-    string comando, texto;
+    string comando, texto[200];
     TipoItem *no_aux = new TipoItem();
 
     ifstream input;
@@ -58,8 +58,6 @@ int main(int argc, char **argv)
     input >> tam_servidor;
     HashTable ht(tam_servidor);
 
-    string texto_aux;
-
     while (input >> comando >> usuario_id >> email_id)
     {
         if (comando == "ENTREGA")
@@ -67,35 +65,47 @@ int main(int argc, char **argv)
             input >> n_palavras;
             for (int i = 0; i < n_palavras; i++)
             {
-                input >> texto_aux;
-                texto += texto_aux;
+                input >> texto[i];
             }
-            TipoItem *email = new TipoItem(email_id, usuario_id, texto);
+            TipoItem *email = new TipoItem(texto, email_id, n_palavras, usuario_id);
             aux_pos = ht.Insere(email, usuario_id);
             output << "OK: MENSAGEM " << email_id << " PARA " << usuario_id << " ARMAZENADA EM " << aux_pos << endl;
         }
         else if (comando == "CONSULTA")
         {
-            no_aux = ht.Pesquisa(usuario_id, email_id);
-            std::cout << "OK: MENSAGEM " << email_id << " PARA " << usuario_id << " ENCONTRADA EM " << no_aux->GetIdEmail() << endl;
-            if (no_aux->GetIdEmail() == email_id)
+            no_aux = ht.Pesquisa(email_id, usuario_id);
+
+            cout << email_id << usuario_id << endl;
+            cout << no_aux->id_mail << endl;
+            if (no_aux->id_mail == email_id)
             {
                 output << comando << " " << usuario_id << " " << email_id << ": ";
 
-                output << no_aux->GetTexto() << endl;
+                for (int i = 0; i < no_aux->tam_texto - 1; i++)
+                {
+                    output << no_aux->texto[i] << " ";
+                }
+                output << no_aux->texto[no_aux->tam_texto - 1] << endl;
             }
             else
+            {
                 output << comando << " " << usuario_id << " " << email_id << ": MENSAGEM INEXISTENTE" << endl;
+            }
         }
         else if (comando == "APAGA")
         {
-            aux_delete = ht.Remove(email_id, usuario_id);
+            aux_delete = ht.Remove(usuario_id, email_id);
             if (aux_delete)
+            {
                 output << "OK: MENSAGEM APAGADA" << endl;
+            }
             else
+            {
                 output << "ERRO: MENSAGEM INEXISTENTE" << endl;
+            }
         }
     }
+
     input.close();
     output.close();
     return 0;

@@ -1,45 +1,23 @@
+#include <iostream>
 #include "TipoItem.hpp"
-#include <string>
-using namespace std;
 
 TipoItem::TipoItem()
 {
- id_email = -1;
-}
+ id_usuario = -1;
+ tam_texto = -1;
+ id_mail = -1;
+ *texto = "";
+ esq = NULL;
+ dir = NULL;
+};
 
-TipoItem::TipoItem(int _id_email, int _id_usuario, string _texto)
-{
- id_email = _id_email;
- id_usuario = _id_usuario;
- texto = _texto;
-}
-
-void TipoItem::SetIdEmail(int _id_email)
-{
- id_email = _id_email;
-}
-
-void TipoItem::SetIdUsuario(int _id_usuario)
+TipoItem::TipoItem(std::string *_texto, int _id_mail, int tamanho, int _id_usuario)
 {
  id_usuario = _id_usuario;
-}
-
-void TipoItem::SetTexto(std::string _texto)
-{
- texto = _texto;
-}
-
-int TipoItem::GetIdEmail()
-{
- return id_email;
-}
-
-std::string TipoItem::GetTexto()
-{
- return texto;
-}
-
-int TipoItem::GetUserId()
-{
- return id_usuario;
+ tam_texto = tamanho;
+ id_mail = _id_mail;
+ for (int i = 0; i < tamanho; i++)
+ {
+  texto[i] = _texto[i];
+ }
 }

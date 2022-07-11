@@ -1,8 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory '/home/leo/estrutura_de_dados/TP_3/TP'
-g++ -pg -Wall -c -I./include/ -o ./obj//TipoItem.o ./src//TipoItem.cpp
-g++ -pg -Wall -c -I./include/ -o ./obj//HashTable.o ./src//HashTable.cpp 
-g++ -pg -Wall -c -I./include/ -o ./obj//ArvoreBinaria.o ./src//ArvoreBinaria.cpp
-g++ -o ./bin//TP2.exe -lm ./obj//TipoItem.o ./obj//HashTable.o ./obj//ArvoreBinaria.o ./obj//Main.o
-make: Leaving directory '/home/leo/estrutura_de_dados/TP_3/TP'
- 
