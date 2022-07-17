@@ -1,7 +1,7 @@
 #include <iostream>
-#include "TipoItem.hpp"
+#include "tipoItem.hpp"
 
-TipoItem::TipoItem()
+tipoItem::tipoItem()
 {
  id_usuario = -1;
  tam_texto = -1;
@@ -11,7 +11,7 @@ TipoItem::TipoItem()
  dir = NULL;
 };
 
-TipoItem::TipoItem(std::string *_texto, int _id_mail, int tamanho, int _id_usuario)
+tipoItem::tipoItem(std::string *_texto, int _id_mail, int tamanho, int _id_usuario)
 {
  id_usuario = _id_usuario;
  tam_texto = tamanho;

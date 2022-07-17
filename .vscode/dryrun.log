@@ -1,0 +1,10 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/leo/estrutura_de_dados/TP_3/TP'
+g++ -pg -Wall -c -I./include/ -o ./obj//Main.o ./src//Main.cpp 
+make: Leaving directory '/home/leo/estrutura_de_dados/TP_3/TP'
+ 
+make: *** No rule to make target 'include//tipoItem.hpp', needed by 'obj//tipoItem.o'.
+make: *** No rule to make target 'src//tipoItem.cpp', needed by 'obj//tipoItem.o'.
+make: *** No rule to make target 'src//hashTable.cpp', needed by 'obj//hashTable.o'.
+make: *** No rule to make target 'src//arvoreBinaria.cpp', needed by 'obj//arvoreBinaria.o'.
+

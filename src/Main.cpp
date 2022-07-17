@@ -2,9 +2,9 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
-#include "ArvoreBinaria.hpp"
-#include "TipoItem.hpp"
-#include "HashTable.hpp"
+#include "arvoreBinaria.hpp"
+#include "tipoItem.hpp"
+#include "hashTable.hpp"
 #include <string>
 #include <getopt.h>
 #include <fstream>
@@ -14,26 +14,30 @@
 
 using namespace std;
 
-using namespace std;
-char arq_in[100], arq_out[100];
-void parse_args(int argc, char **argv)
+char nome_entrada[100], nome_saida[100];
+
+void parseArgs(int argc, char **argv)
 {
     extern char *optarg;
     int c;
-    arq_in[0] = 0;
-    arq_out[0] = 0;
+    nome_entrada[0] = 0;
+    nome_saida[0] = 0;
 
-    while ((c = getopt(argc, argv, "i:I:m:M:s:S:o:O:h")) != EOF)
+    while ((c = getopt(argc, argv, "i:I:o:O:h")) != EOF)
     {
         switch (c)
         {
-        case 'i':
-        case 'I':
-            strcpy(arq_in, optarg);
-            break;
         case 'o':
+            strcpy(nome_saida, optarg);
+            break;
         case 'O':
-            strcpy(arq_out, optarg);
+            strcpy(nome_saida, optarg);
+            break;
+        case 'i':
+            strcpy(nome_entrada, optarg);
+            break;
+        case 'I':
+            strcpy(nome_entrada, optarg);
             break;
         }
     }
@@ -41,68 +45,38 @@ void parse_args(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-    parse_args(argc, argv);
-
-    int usuario_id, email_id, n_palavras, aux_pos, aux_delete = 0;
-    int tam_servidor;
-    string comando, texto[200];
-    TipoItem *no_aux = new TipoItem();
+    parseArgs(argc, argv);
 
     ifstream input;
     ofstream output;
-    input.open(arq_in);
-    output.open(arq_out);
+    input.open(nome_entrada);
+    output.open(nome_saida);
 
-    erroAssert(input.is_open(), "Erro ao abrir arquivo de entrada");
+    erroAssert(input.is_open(), "Erro no arquivo de entrada");
+
+    int tam_servidor;
 
     input >> tam_servidor;
-    HashTable ht(tam_servidor);
+    hashTable ht(tam_servidor);
+
+    string comando, texto[200];
+    int usuario_id, email_id;
 
     while (input >> comando >> usuario_id >> email_id)
     {
         if (comando == "ENTREGA")
         {
-            input >> n_palavras;
-            for (int i = 0; i < n_palavras; i++)
-            {
-                input >> texto[i];
-            }
-            TipoItem *email = new TipoItem(texto, email_id, n_palavras, usuario_id);
-            aux_pos = ht.Insere(email, usuario_id);
-            output << "OK: MENSAGEM " << email_id << " PARA " << usuario_id << " ARMAZENADA EM " << aux_pos << endl;
+            ht.entrega(input, output, usuario_id, email_id, texto);
         }
-        else if (comando == "CONSULTA")
-        {
-            no_aux = ht.Pesquisa(email_id, usuario_id);
 
-            cout << email_id << usuario_id << endl;
-            cout << no_aux->id_mail << endl;
-            if (no_aux->id_mail == email_id)
-            {
-                output << comando << " " << usuario_id << " " << email_id << ": ";
-
-                for (int i = 0; i < no_aux->tam_texto - 1; i++)
-                {
-                    output << no_aux->texto[i] << " ";
-                }
-                output << no_aux->texto[no_aux->tam_texto - 1] << endl;
-            }
-            else
-            {
-                output << comando << " " << usuario_id << " " << email_id << ": MENSAGEM INEXISTENTE" << endl;
-            }
-        }
         else if (comando == "APAGA")
         {
-            aux_delete = ht.Remove(usuario_id, email_id);
-            if (aux_delete)
-            {
-                output << "OK: MENSAGEM APAGADA" << endl;
-            }
-            else
-            {
-                output << "ERRO: MENSAGEM INEXISTENTE" << endl;
-            }
+            ht.apaga(output, usuario_id, email_id);
+        }
+
+        else if (comando == "CONSULTA")
+        {
+            ht.consulta(output, usuario_id, email_id, texto);
         }
     }
 

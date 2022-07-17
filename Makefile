@@ -10,8 +10,8 @@ LIBS = -lm
 
 # Arquivos
 TARGET = $(BIN_FOLDER)/TP2.exe
-HDR_FILES = $(INCLUDE_FOLDER)/TipoItem.hpp $(INCLUDE_FOLDER)/HashTable.hpp $(INCLUDE_FOLDER)/ArvoreBinaria.hpp
-OBJ_FILES = $(OBJ_FOLDER)/TipoItem.o $(OBJ_FOLDER)/HashTable.o $(OBJ_FOLDER)/ArvoreBinaria.o $(OBJ_FOLDER)/Main.o
+HDR_FILES = $(INCLUDE_FOLDER)/tipoItem.hpp $(INCLUDE_FOLDER)/hashTable.hpp $(INCLUDE_FOLDER)/arvoreBinaria.hpp
+OBJ_FILES = $(OBJ_FOLDER)/tipoItem.o $(OBJ_FOLDER)/hashTable.o $(OBJ_FOLDER)/arvoreBinaria.o $(OBJ_FOLDER)/Main.o
  
 all: $(TARGET)
 
@@ -21,14 +21,14 @@ $(TARGET): $(OBJ_FILES)
 $(OBJ_FOLDER)/Main.o: $(SRC_FOLDER)/Main.cpp
 	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/Main.o $(SRC_FOLDER)/Main.cpp 
 
-$(OBJ_FOLDER)/TipoItem.o: $(HDR_FILES) $(SRC_FOLDER)/TipoItem.cpp
-	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/TipoItem.o $(SRC_FOLDER)/TipoItem.cpp
+$(OBJ_FOLDER)/tipoItem.o: $(HDR_FILES) $(SRC_FOLDER)/tipoItem.cpp
+	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/tipoItem.o $(SRC_FOLDER)/tipoItem.cpp
 	
-$(OBJ_FOLDER)/HashTable.o: $(HDR_FILES) $(SRC_FOLDER)/HashTable.cpp
-	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/HashTable.o $(SRC_FOLDER)/HashTable.cpp 
+$(OBJ_FOLDER)/hashTable.o: $(HDR_FILES) $(SRC_FOLDER)/hashTable.cpp
+	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/hashTable.o $(SRC_FOLDER)/hashTable.cpp 
 
-$(OBJ_FOLDER)/ArvoreBinaria.o: $(HDR_FILES) $(SRC_FOLDER)/ArvoreBinaria.cpp
-	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/ArvoreBinaria.o $(SRC_FOLDER)/ArvoreBinaria.cpp
+$(OBJ_FOLDER)/arvoreBinaria.o: $(HDR_FILES) $(SRC_FOLDER)/arvoreBinaria.cpp
+	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/arvoreBinaria.o $(SRC_FOLDER)/arvoreBinaria.cpp
 
 clean:
 	rm $(TARGET) $(OBJ_FILES) 
