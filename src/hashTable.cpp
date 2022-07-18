@@ -12,22 +12,6 @@ hashTable::hashTable(int _tamanho)
   Tabela = new arvoreBinaria[tamanho];
 }
 
-tipoItem *hashTable::pesquisa(int chave, int id_user)
-{
-  int pos = hash(id_user);
-  tipoItem *item = new tipoItem();
-  item = Tabela[pos].pesquisa(chave, id_user);
-  return item;
-}
-
-int hashTable::insere(tipoItem *_email, int _id_usuario)
-{
-  int pos;
-  pos = hash(_id_usuario);
-  Tabela[pos].insere(_email);
-  return pos;
-}
-
 int hashTable::hash(int chave)
 {
   return chave % tamanho;
