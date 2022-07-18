@@ -45,8 +45,10 @@ void parseArgs(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
+
     parseArgs(argc, argv);
 
+    // abertura de arquivos
     ifstream input;
     ofstream output;
     input.open(nome_entrada);

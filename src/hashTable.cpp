@@ -28,18 +28,12 @@ int hashTable::insere(tipoItem *_email, int _id_usuario)
   return pos;
 }
 
-int hashTable::remove(int id_usuario, int id_email)
-{
-  int pos = hash(id_usuario);
-  return Tabela[pos].remove(id_email);
-}
-
 int hashTable::hash(int chave)
 {
   return chave % tamanho;
 }
 
-// métodos referentes às operações no arquivo de saída, como entrega, apaga e consulta
+// métodos referentes às operações na arvore e impressao de saida
 void hashTable::entrega(std::ifstream &input, std::ofstream &output, int usuario_id, int email_id, std::string *texto)
 {
   int n_palavras = 0;
@@ -49,16 +43,18 @@ void hashTable::entrega(std::ifstream &input, std::ofstream &output, int usuario
     input >> texto[i];
   }
 
-  int posicao_entrega = 0;
   tipoItem *mensagem = new tipoItem(texto, email_id, n_palavras, usuario_id);
-  posicao_entrega = this->insere(mensagem, usuario_id);
+
+  int posicao_entrega = hash(usuario_id);
+  Tabela[posicao_entrega].insere(mensagem);
 
   output << "OK: MENSAGEM " << email_id << " PARA " << usuario_id << " ARMAZENADA EM " << posicao_entrega << "\n";
 }
 
 void hashTable::apaga(std::ofstream &output, int usuario_id, int email_id)
 {
-  int indice_delecao = this->remove(usuario_id, email_id);
+  int pos = hash(usuario_id);
+  int indice_delecao = Tabela[pos].remove(email_id);
   indice_delecao ? output << "OK: MENSAGEM APAGADA"
                           << "\n"
                  : output << "ERRO: MENSAGEM INEXISTENTE"
@@ -68,8 +64,9 @@ void hashTable::apaga(std::ofstream &output, int usuario_id, int email_id)
 void hashTable::consulta(std::ofstream &output, int usuario_id, int email_id, std::string *texto)
 {
 
+  int pos = hash(usuario_id);
   tipoItem *item_pesquisa = new tipoItem();
-  item_pesquisa = this->pesquisa(email_id, usuario_id);
+  item_pesquisa = Tabela[pos].pesquisa(email_id, usuario_id);
 
   if (item_pesquisa->id_mail != email_id)
   {
