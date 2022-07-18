@@ -7,6 +7,8 @@ arvoreBinaria::arvoreBinaria()
   raiz = NULL;
 };
 
+// operações em arvore binárias
+
 void arvoreBinaria::insere(tipoItem *item)
 {
   insereRecursivo(raiz, item);
