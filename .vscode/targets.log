@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'include//tipoItem.hpp', needed by 'obj//tipoItem.o'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'include//tipoItem.hpp', needed by 'obj//tipoIt
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul 16 22:48:26 2022
+# Make data base, printed on Mon Jul 18 08:27:28 2022
 
 # Variables
 
@@ -63,7 +61,7 @@ HDR_FILES = $(INCLUDE_FOLDER)/tipoItem.hpp $(INCLUDE_FOLDER)/hashTable.hpp $(INC
 # environment
 VSCODE_LOG_STACK = false
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-4997dce7-4124-41aa-adba-16e6dc00c814.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-9280af5f-6506-4ba9-9f66-c67483409675.sock
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # automatic
@@ -85,7 +83,7 @@ HOME = /home/leo
 # environment
 LOGNAME = leo
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # automatic
@@ -175,9 +173,9 @@ MOTD_SHOWN = update-motd
 
 # Directories
 
-# . (device 2064, inode 509617): 9 files, no impossibilities.
+# . (device 2064, inode 509617): 10 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -187,44 +185,51 @@ MOTD_SHOWN = update-motd
 
 # Not a target:
 include//hashTable.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-17 22:04:12.9509036
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src//hashTable.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-17 22:03:55.9609036
+#  File has been updated.
+#  Successfully updated.
 
 all: bin//TP2.exe
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 include//tipoItem.hpp:
 #  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
+#  Last modified 2022-07-16 22:49:23.53
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src//tipoItem.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-16 22:51:29.41
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src//Main.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-17 21:53:01.4409036
+#  File has been updated.
+#  Successfully updated.
 
 obj//Main.o: src//Main.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-17 22:04:23.5509036
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 22):
 	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/Main.o $(SRC_FOLDER)/Main.cpp 
 
@@ -237,15 +242,17 @@ Makefile:
 
 obj//arvoreBinaria.o: include//tipoItem.hpp include//hashTable.hpp include//arvoreBinaria.hpp src//arvoreBinaria.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-17 22:04:21.7809036
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 31):
 	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/arvoreBinaria.o $(SRC_FOLDER)/arvoreBinaria.cpp
 
 obj//hashTable.o: include//tipoItem.hpp include//hashTable.hpp include//arvoreBinaria.hpp src//hashTable.cpp
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-17 22:04:20.5609036
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/hashTable.o $(SRC_FOLDER)/hashTable.cpp 
 
@@ -257,16 +264,19 @@ obj//hashTable.o: include//tipoItem.hpp include//hashTable.hpp include//arvoreBi
 
 obj//tipoItem.o: include//tipoItem.hpp include//hashTable.hpp include//arvoreBinaria.hpp src//tipoItem.cpp
 #  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
+#  Last modified 2022-07-17 22:04:19.4209036
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 25):
 	$(CC) $(CFLAGS) -o $(OBJ_FOLDER)/tipoItem.o $(SRC_FOLDER)/tipoItem.cpp
 	
 
 bin//TP2.exe: obj//tipoItem.o obj//hashTable.o obj//arvoreBinaria.o obj//Main.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-16 22:45:02.27
-#  File has not been updated.
+#  Last modified 2022-07-17 22:04:24.3209036
+#  File has been updated.
+#  Successfully updated.
+ 
 #  recipe to execute (from 'Makefile', line 19):
 	$(CC) -o $(TARGET) $(LIBS) $(OBJ_FILES)
 
@@ -278,17 +288,18 @@ clean:
 	rm $(TARGET) $(OBJ_FILES) 
 
 # Not a target:
- 
 include//arvoreBinaria.hpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-16 23:09:41.47
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src//arvoreBinaria.cpp:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2022-07-17 21:54:40.7009036
+#  File has been updated.
+#  Successfully updated.
 
 # files hash-table stats:
 # Load=17/1024=2%, Rehash=0, Collisions=2/51=4%
@@ -298,12 +309,12 @@ src//arvoreBinaria.cpp:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 27 / storage = 333 B / avg = 12 B
-# current buf: size = 8162 B / used = 333 B / count = 27 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 28 / storage = 353 B / avg = 12 B
+# current buf: size = 8162 B / used = 353 B / count = 28 / avg = 12 B
 
-# strcache performance: lookups = 50 / hit rate = 46%
+# strcache performance: lookups = 51 / hit rate = 45%
 # hash-table stats:
-# Load=27/8192=0%, Rehash=0, Collisions=1/50=2%
-# Finished Make data base on Sat Jul 16 22:48:26 2022
+# Load=28/8192=0%, Rehash=0, Collisions=1/51=2%
+# Finished Make data base on Mon Jul 18 08:27:28 2022
 
  

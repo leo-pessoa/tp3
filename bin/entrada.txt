@@ -1,19 +1,9 @@
-5
-ENTREGA 5 103 6 Bom dia, meu amigo! Tudo bom?
-ENTREGA 3 101 5 Boa noite, meu irmao! Tudo
-ENTREGA 5 101 4 Bom tarde, meu amigo!
-ENTREGA 1 103 6 Como vai, tu fez! Tudo certo?
-CONSULTA 5 103
-APAGA 5 103
-CONSULTA 5 103
-CONSULTA 5 101
-APAGA 5 101
-CONSULTA 5 101
-CONSULTA 3 101
-APAGA 3 101
-CONSULTA 5 103
-CONSULTA 3 101
-CONSULTA 1 103
-APAGA 1 103
-ENTREGA 5 103 6 Bom dia, meu amigo! Tudo bom?
-CONSULTA 5 103
+1
+ENTREGA 1 116 14 Boa tarde José! Amanhã preciso que você busque uma encomenda na filial da Pampulha.
+ENTREGA 2 117 9 Boa tarde Antônio! Certo, qual o endereço da loja?
+ENTREGA 1 118 10 Avenida Antônio Carlos, 1000. Chegar lá e procurar por Flávio.
+ENTREGA 2 119 5 Ok, estarei lá às 8h.
+ENTREGA 1 120 1 Obrigado.
+CONSULTA 1 116
+APAGA 1 117
+CONSULTA 2 117
