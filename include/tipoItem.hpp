@@ -7,9 +7,9 @@ class tipoItem
 {
 public:
  tipoItem();
- tipoItem(std::string _texto[200], int _id_mail, int tamanho, int _id_usuario);
+ tipoItem(std::string _texto[200], int _id_mensagem, int tamanho, int _id_usuario);
  int tam_texto;
- int id_mail;
+ int id_mensagem;
  int id_usuario;
  std::string texto[200];
 

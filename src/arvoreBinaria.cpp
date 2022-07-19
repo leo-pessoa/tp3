@@ -22,8 +22,8 @@ void arvoreBinaria::insereRecursivo(tipoItem *&p, tipoItem *item)
   }
   else
   {
-    item->id_mail < p->id_mail ? insereRecursivo(p->esq, item)
-                               : insereRecursivo(p->dir, item);
+    item->id_mensagem < p->id_mensagem ? insereRecursivo(p->esq, item)
+                                       : insereRecursivo(p->dir, item);
   }
 };
 
@@ -38,16 +38,16 @@ tipoItem *arvoreBinaria::pesquisaRecursivo(tipoItem *p, int chave, int id_user)
   tipoItem *aux = new tipoItem();
   if (p == NULL)
   {
-    aux->id_mail = -1;
+    aux->id_mensagem = -1;
     return aux;
   }
 
-  if (chave < p->id_mail)
+  if (chave < p->id_mensagem)
   {
     return pesquisaRecursivo(p->esq, chave, id_user);
   }
 
-  if (chave > p->id_mail)
+  if (chave > p->id_mensagem)
   {
     return pesquisaRecursivo(p->dir, chave, id_user);
   }
@@ -72,11 +72,11 @@ int arvoreBinaria::removeRecursivo(tipoItem *&p, int chave)
   {
     return 0;
   }
-  if (chave < p->id_mail)
+  if (chave < p->id_mensagem)
   {
     return removeRecursivo(p->esq, chave);
   }
-  else if (chave > p->id_mail)
+  else if (chave > p->id_mensagem)
   {
     return removeRecursivo(p->dir, chave);
   }

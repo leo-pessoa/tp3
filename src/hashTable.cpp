@@ -38,11 +38,21 @@ void hashTable::entrega(std::ifstream &input, std::ofstream &output, int usuario
 void hashTable::apaga(std::ofstream &output, int usuario_id, int email_id)
 {
   int pos = hash(usuario_id);
-  int indice_delecao = Tabela[pos].remove(email_id);
-  indice_delecao ? output << "OK: MENSAGEM APAGADA"
-                          << "\n"
-                 : output << "ERRO: MENSAGEM INEXISTENTE"
-                          << "\n";
+  tipoItem *consulta = Tabela[pos].pesquisa(email_id, usuario_id);
+
+  if (consulta->id_mensagem == email_id)
+  {
+    int indice_delecao = Tabela[pos].remove(email_id);
+    indice_delecao ? output << "OK: MENSAGEM APAGADA"
+                            << "\n"
+                   : output << "ERRO: MENSAGEM INEXISTENTE"
+                            << "\n";
+  }
+  else
+  {
+    output << "ERRO: MENSAGEM INEXISTENTE"
+           << "\n";
+  }
 }
 
 void hashTable::consulta(std::ofstream &output, int usuario_id, int email_id, std::string *texto)
@@ -52,7 +62,7 @@ void hashTable::consulta(std::ofstream &output, int usuario_id, int email_id, st
   tipoItem *item_pesquisa = new tipoItem();
   item_pesquisa = Tabela[pos].pesquisa(email_id, usuario_id);
 
-  if (item_pesquisa->id_mail != email_id)
+  if (item_pesquisa->id_mensagem != email_id)
   {
     output << "CONSULTA " << usuario_id << " " << email_id << ": MENSAGEM INEXISTENTE"
            << "\n";
@@ -66,7 +76,6 @@ void hashTable::consulta(std::ofstream &output, int usuario_id, int email_id, st
     {
       output << item_pesquisa->texto[i] << " ";
     }
-
     output << item_pesquisa->texto[item_pesquisa->tam_texto - 1] << "\n";
   }
 }

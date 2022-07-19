@@ -9,7 +9,7 @@ CFLAGS = -pg -Wall -c -I$(INCLUDE_FOLDER)
 LIBS = -lm
 
 # Arquivos
-TARGET = $(BIN_FOLDER)/TP2.exe
+TARGET = $(BIN_FOLDER)/TP3.exe
 HDR_FILES = $(INCLUDE_FOLDER)/tipoItem.hpp $(INCLUDE_FOLDER)/hashTable.hpp $(INCLUDE_FOLDER)/arvoreBinaria.hpp
 OBJ_FILES = $(OBJ_FOLDER)/tipoItem.o $(OBJ_FOLDER)/hashTable.o $(OBJ_FOLDER)/arvoreBinaria.o $(OBJ_FOLDER)/Main.o
  
